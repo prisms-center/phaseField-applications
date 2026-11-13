@@ -1,0 +1,52 @@
+set mesh type = rectangular
+
+subsection Rectangular mesh
+  set x size = 320.0
+  set y size = 320.0
+end
+
+set global refinement = 8
+set mesh adaptivity = false
+
+set time step = 1.0e-2
+set number steps = 4000
+
+subsection nucleation
+  set nucleus exclusion distance = 10.0
+  set same field nucleus exclusion distance = 100.0
+  set nucleation period = 50
+  set refinement radius = 5.0
+end
+
+subsection output
+  set condition = EQUAL_SPACING
+  set number = 100
+  set file type = vtu
+end
+
+subsection input file: 0
+  set file name = microstructure.vtk
+  set file variables = n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12
+  set format = vtk
+  set simulation variables = n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12
+end
+
+subsection input file: 1
+  set file name = stored_energy.vtk
+  set file variables = rho1, rho2, rho3, rho4, rho5, rho6, rho7, rho8, rho9, rho10, rho11, rho12
+  set format = vtk
+  set simulation variables = rho1, rho2, rho3, rho4, rho5, rho6, rho7, rho8, rho9, rho10, rho11, rho12
+end
+
+set Model constant m_well = 1.0, DOUBLE
+set Model constant kappa = 1.25, DOUBLE
+set Model constant alpha = 1.5, DOUBLE
+set Model constant kinetic_coef = 1.0, DOUBLE
+set Model constant fsbs = 0.25, DOUBLE
+set Model constant r_nuc = 1.5, DOUBLE
+set Model constant r_freeze = 4.0, DOUBLE
+set Model constant num_parent_grains = 12, INT
+set Model constant num_nucleating_grains = 20, INT
+set Model constant seeding_increment = 200, INT
+set Model constant seeding_duration = 1.0e-2, DOUBLE
+set Model constant seeding_coef = 9.5, DOUBLE
